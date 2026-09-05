@@ -338,6 +338,9 @@ def _benchmark_configs():
 
 CONFIGS = _correctness_configs()
 BENCH_CONFIGS = _benchmark_configs()
+_BENCH_KERNEL_CONFIGS = tuple(
+    {key: value for key, value in config.items() if key != "label"} for config in BENCH_CONFIGS
+)
 
 
 def get_kernel(**config):
@@ -388,7 +391,11 @@ def run_test(**config):
     _data.finish_target(data)
     _data.source_launch(data)
     torch.cuda.synchronize()
-    _data.validate_outputs(data)
+    # The c-prefixed correctness matrix is deliberately small enough for the
+    # independent FP64 oracle.  Production benchmark shapes can be 128K x
+    # 128K, so validate those directly against the pinned source instead of
+    # materializing an O(sequence^2) oracle tensor.
+    _data.validate_outputs(data, with_oracle=kernel_config not in _BENCH_KERNEL_CONFIGS)
 
 
 def prepare_bench(**config):
