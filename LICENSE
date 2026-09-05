@@ -256,3 +256,11 @@ tirx_kernels/cudnn/flex_attention/forward_hd256_sm100.py (full license text is
                              reproduced in the file header)
 tirx_kernels/cudnn/flex_attention/forward_sm103.py (full license text is
                              reproduced in the file header)
+tirx_kernels/cudnn/flex_attention/flex_attention_backward_sm100.py (full license
+                             text is reproduced in the file header)
+tirx_kernels/cudnn/flex_attention/_flex_attention_backward_sm100/data.py (full
+                             license text is reproduced in the file header)
+tirx_kernels/cudnn/flex_attention/_flex_attention_backward_sm100/kernel.py (full
+                             license text is reproduced in the file header)
+tirx_kernels/cudnn/flex_attention/_flex_attention_backward_sm100/kernel_2cta.py
+                             (full license text is reproduced in the file header)
